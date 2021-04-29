@@ -3,18 +3,18 @@
 using  namespace  std;
 int main()
 {
-	int N;
-	bool lastLetter = true;
+	int entNum;
+	bool lastDigit = true;
 
 	FILE* in;
 	fopen_s(&in, "in.txt", "rt");
-	fscanf_s(in, "%d", &N);
+	fscanf_s(in, "%d", &entNum);
 	fclose(in);
 
 	FILE* out;
 	fopen_s(&out, "out.txt", "w");
 
-	for (int i = 2; i <= N; i++)
+	for (int i = 2; i <= entNum; i++)
 	{
 		bool isPrime = true;
 		for (int k = 2; k < i; k++)
@@ -27,17 +27,13 @@ int main()
 		}
 		if (isPrime)
 		{
-			if (lastLetter)
+			if (lastDigit)
 			{
-				cout << i;
-				lastLetter = false;
+				lastDigit = false;
 				fprintf_s(out, "%d", i);
 			}
 			else
-			{
-				cout << ", " << i;
 				fprintf_s(out, ", %d", i);
-			}
 		}
 	}
 	fclose(out);
